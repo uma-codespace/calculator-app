@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useCallback } from "react";
 import { evaluate } from "mathjs";
 
 const buttons = [
@@ -31,48 +31,50 @@ function App() {
     return operators.includes(val);
   }
 
-  function handleClick(btn) {
-    if (btn === "RESET") {
-      setExpression("");
-      return;
-    }
-
-    if (btn === "DEL") {
-      setExpression((prev) => prev.slice(0, -1));
-      return;
-    }
-
-    if (btn === "=") {
-      handleEquals();
-      return;
-    }
-
-    setExpression((prev) => {
-      if (!prev && isOperator(btn)) return prev;
-
-      if (isOperator(btn) && isOperator(prev.slice(-1))) {
-        return prev.slice(0, -1) + btn;
-      }
-
-      if (btn === ".") {
-        const lastNumber = prev.split(/[+\-*/]/).pop();
-        if (lastNumber.includes(".")) return prev;
-      }
-
-      return prev + btn;
-    });
-  }
-
-  function handleEquals() {
+  const handleEquals = useCallback(() => {
     try {
       const result = evaluate(expression);
       const formatted = parseFloat(result.toFixed(6));
-
       setExpression(String(formatted));
     } catch {
       setExpression("Error");
     }
-  }
+  }, [expression]);
+
+  const handleClick = useCallback(
+    (btn) => {
+      if (btn === "RESET") {
+        setExpression("");
+        return;
+      }
+
+      if (btn === "DEL") {
+        setExpression((prev) => prev.slice(0, -1));
+        return;
+      }
+
+      if (btn === "=") {
+        handleEquals();
+        return;
+      }
+
+      setExpression((prev) => {
+        if (!prev && isOperator(btn)) return prev;
+
+        if (isOperator(btn) && isOperator(prev.slice(-1))) {
+          return prev.slice(0, -1) + btn;
+        }
+
+        if (btn === ".") {
+          const lastNumber = prev.split(/[+\-*/]/).pop();
+          if (lastNumber.includes(".")) return prev;
+        }
+
+        return prev + btn;
+      });
+    },
+    [handleEquals],
+  );
 
   useEffect(() => {
     function handleKey(e) {
@@ -89,7 +91,7 @@ function App() {
 
     window.addEventListener("keydown", handleKey);
     return () => window.removeEventListener("keydown", handleKey);
-  }, [expression, handleClick, handleEquals]);
+  }, [handleClick, handleEquals]);
 
   return (
     <div className="app">
