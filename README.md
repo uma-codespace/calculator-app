@@ -71,6 +71,8 @@ setExpression("");
 
 ## Live Demo
 
+https://calculator-app-lyart-eight.vercel.app/
+
 ## Preview
 
 ![Desktop Preview](./preview/calc1.png)
