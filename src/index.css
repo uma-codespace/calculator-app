@@ -1,0 +1,103 @@
+:root {
+  --bg-main: #3a4764;
+  --bg-toggle: #232c43;
+  --bg-screen: #182034;
+  --key-bg: #eae3dc;
+  --key-shadow: #b4a597;
+  --key-text: #444b5a;
+  --key-del-bg: #637097;
+  --key-del-shadow: #404e72;
+  --key-equals-bg: #d03f2f;
+  --key-equals-shadow: #93261a;
+  --text-light: #ffffff;
+}
+
+body {
+  background-color: var(--bg-main);
+  font-family: "League Spartan", sans-serif;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0;
+  min-height: 100vh;
+}
+
+.app {
+  width: 320px;
+}
+
+header {
+  color: var(--text-light);
+  display: flex;
+  justify-content: center;
+  margin-bottom: 1.5rem;
+  text-align: center;
+}
+
+header h1 {
+  font-size: 2.25rem;
+  letter-spacing: 2px;
+  margin: 0;
+  text-transform: uppercase;
+}
+
+.calc-total {
+  background-color: var(--bg-screen);
+  border-radius: 10px;
+  color: var(--text-light);
+  font-size: 2.5rem;
+  margin-bottom: 1.5rem;
+  overflow: hidden;
+  padding: 1.5rem;
+  text-align: right;
+  word-wrap: break-word;
+}
+
+.calc-inputs {
+  background-color: var(--bg-toggle);
+  border-radius: 10px;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1rem;
+  padding: 1.25rem;
+}
+
+button {
+  background-color: var(--key-bg);
+  border: none;
+  border-radius: 8px;
+  box-shadow: 0 4px 0 var(--key-shadow);
+  cursor: pointer;
+  color: var(--key-text);
+  font-family: inherit;
+  font-size: 1.25rem;
+  padding: 0.75rem 0;
+  transition: all 0.15s ease;
+}
+
+button:active {
+  box-shadow: 0 2px 0 var(--key-shadow);
+  transform: translateY(2px);
+}
+
+button.del,
+button.reset {
+  background-color: var(--key-del-bg);
+  box-shadow: 0 4px 0 var(--key-del-shadow);
+  color: var(--text-light);
+}
+
+button.reset {
+  grid-column: span 2;
+}
+
+button.equals {
+  background-color: var(--key-equals-bg);
+  box-shadow: 0 4px 0 var(--key-equals-shadow);
+  color: var(--text-light);
+  grid-column: span 2;
+}
+
+button:hover {
+  filter: brightness(1.1);
+}
