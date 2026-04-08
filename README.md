@@ -1,6 +1,6 @@
 ## Calculator App - Overview
 
-A responsive calculator application built as part of a Frontend Mentor challenge. This project focuses on implementing core calculator logic, clean UI structure, and interactive user experience using modern frontend practices.
+A responsive calculator application focuses on implementing core calculator logic, a clean UI structure and an interactive user experience using ReactJS and modern frontend practices. The application leverages React components, state management and event handling to create a dynamic, responsive and maintainable calculator interface.
 
 ## Features
 
