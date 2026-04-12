@@ -22,13 +22,6 @@ A responsive calculator application focuses on implementing core calculator logi
 - CSS3 / Flexbox / Grid – Layout and styling
 - Frontend Mentor – Design inspiration
 
-## Project Structure
-
-src/
-├── App.js
-├── index.css(styles)
-└── index.js(main)
-
 ## Functionality Overview
 
 - Expression Handling
